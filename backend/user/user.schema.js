@@ -18,6 +18,11 @@ const userBetSchema = new Schema({
         type: Number,
         required: true,
         enum : [1,2]
+    },
+    status: {
+      type: String,
+      enum: ["completed", "ongoing"],
+      default: "ongoing"
     }
   });
 

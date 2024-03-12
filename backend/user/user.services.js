@@ -68,6 +68,9 @@ const createUserBet = async (id, request) => {
     } else {
       throw new Error("Invalid request");
     }
+    const newAmount = bet.value + request.amount;
+    bet.value = newAmount;
+    const savedBet = await bet.save();
     user.bets.push(newBet);
     const savedUser = await user.save();
     return savedUser;
