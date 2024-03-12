@@ -38,7 +38,7 @@ const getUsersController = async (req, res) => {
         .status(200)
         .json({ success: false, message: "Users not found" });
     }
-    res.status(200).json({ success: true, data: user });
+    res.status(200).json({ success: true, data: users });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message });

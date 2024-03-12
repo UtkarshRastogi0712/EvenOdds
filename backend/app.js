@@ -3,6 +3,7 @@ const createError = require("http-errors");
 require("dotenv").config();
 require("./utils/database");
 const userRouter = require('./user/user.routes');
+const betRouter = require('./bet/bet.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/user", userRouter);
+app.use("/bet", betRouter);
 
 app.get("/", async (req, res, next) => {
   res.send("It works!");
