@@ -30,6 +30,14 @@ const betSchema = new Schema({
   finishTime: {
     type: Date,
     required: true
+  },
+  value: {
+    type: Number,
+    default: 0
+  },
+  limit: {
+    type: Number,
+    default: 100
   }
 });
 

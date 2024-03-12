@@ -18,7 +18,29 @@ const userSchema = new Schema({
     type: String,
     enum : ["user", "admin"],
     default: "user",
-  }
+  },
+  credits: {
+    type: Number,
+    default: 0
+  },
+  bets: [{
+    id: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required : true 
+    },
+    odds: {
+        type: Number,
+        required: true,
+    },
+    option: {
+        type: Number,
+        required: true
+    }
+  }]
 });
 
 module.exports = mongoose.model("User", userSchema);
