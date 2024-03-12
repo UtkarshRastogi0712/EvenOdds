@@ -1,6 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const userBetSchema = new Schema({
+    id: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required : true 
+    },
+    odds: {
+        type: Number,
+        required: true,
+    },
+    option: {
+        type: Number,
+        required: true,
+        enum : [1,2]
+    }
+  });
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -23,24 +43,7 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
-  bets: [{
-    id: {
-        type: String,
-        required: true
-    },
-    amount: {
-        type: Number,
-        required : true 
-    },
-    odds: {
-        type: Number,
-        required: true,
-    },
-    option: {
-        type: Number,
-        required: true
-    }
-  }]
+  bets: [userBetSchema]
 });
 
 module.exports = mongoose.model("User", userSchema);
