@@ -60,7 +60,7 @@ const createUserBet = async (id, request) => {
     if(request.option == 1){
       odds = bet.oddsOne;
     } else if(request.option == 2){
-      odds = bet.oddsTwo;    
+      odds = bet.oddsTwo;
     } else {
       throw new Error("Invalid request");
     }
@@ -73,6 +73,21 @@ const createUserBet = async (id, request) => {
     const newAmount = bet.value + request.amount;
     bet.value = newAmount;
     const savedBet = await bet.save();
+    if(request.option == 1){
+      const delta = (1/odds)*0.1;
+      const newOddsOne = 1/((1/odds)+delta);
+      const newOddsTwo = 1/(1 - (1/odds)+delta);
+      const updateBet = await Bet.updateMany({_id:request.id},{$set: {oddsTwo: newOddsTwo},$set: {oddsOne: newOddsOne}});
+      console.log(newOddsOne, newOddsTwo, updateBet);
+    } else if(request.option == 2){
+      const delta = (1/odds)*0.1;
+      const newOddsTwo = 1/((1/odds)+delta);
+      const newOddsOne = 1/(1 - (1/odds)+delta);
+      const updateBet = await Bet.updateMany({_id:request.id},{$set: {oddsOne: newOddsOne},$set: {oddsTwo: newOddsTwo}});
+      console.log(newOddsOne, newOddsTwo, updateBet);
+    } else {
+      throw new Error("Invalid request");
+    }
     const savedUser = await User.updateOne({_id: id}, {$push: {bets: newBet}});
     return savedUser;
   } catch (err) {
