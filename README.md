@@ -20,7 +20,7 @@ Our concept integrates traditional fantasy league book making with the decentral
 - This reduces the odds by an ensured margin that forms the "vig" of the book maker.
 - The "vig" itself does not ensure a lower risk as a high value stake on an option with very high odds does pose a significant risk of the bookmaker having to payout more than the earnings of the values staked.
 - Given the bookmaker cannot control the spread of the bets across the options, they adjust the odds to make certain options more lucrative than others and spread out the bets to ensure a better payout.
-- Our solution ensures
+- Our solution ensures an even probabilistic spread of bets to ensure the book makers do not face the risk of huge payouts.
 
 # **The maths**:
 Let the probabilities for $n$ options be: $p_1$ to $p_n$
