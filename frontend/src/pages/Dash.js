@@ -12,9 +12,9 @@ function Dash() {
       <Router>
         <Sidebar />
         <Routes>
-          <Route path='/' component={Profile} />
-          <Route path='/activebets' component={Activebets} />
-          <Route path='/closedbets' component={Closedbets} />
+          <Route path='/' element={<Profile />} />
+          <Route path='/activebets' element={<Activebets />} />
+          <Route path='/closedbets' element={<Closedbets />} />
         </Routes>
 
       </Router>
@@ -24,3 +24,4 @@ function Dash() {
 }
 
 export default Dash;
+
