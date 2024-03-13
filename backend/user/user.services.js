@@ -84,7 +84,7 @@ const createUserBet = async (id, request) => {
 const getUserBets = async (id) => {
     try {
         const user = await User.findOne({_id: id});
-        user.bets.forEach(async (bet) => {
+        for(const bet of user.bets){
           const currentBet = await Bet.findOne({_id: bet.id});
           const time = Date.now();
           const date = new Date(time);
@@ -99,8 +99,9 @@ const getUserBets = async (id) => {
               console.log(amountUpdate)
             }
           }
-        });
-        return user.bets;
+        };
+        const updatedUser = await User.findOne({_id : id});
+        return updatedUser.bets;
     } catch (err) {
         console.error(err);
         throw new Error(err);
