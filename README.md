@@ -70,13 +70,16 @@ $$(1.515-1.696)+(227.27-1.9592)= 0.1327$$
 - Dynamic odds adjusment for reduced book-maker risk.
 - On-chain Smart Contract based transactions to ensure fair payouts.
 
-# 💻 Tech Stack
+# 💻 **Tech Stack**
 - Frontend: Reactjs, TailwindCSS
 - Backend: Nodejs, Express
 - Blockchain: Solidity, Shardeum
 - Libraries: etherjs, web3js, faceio
 - App: Flutter
 - UI/UX: Figma
+
+# **Future prospects**:
+Fantasy leagues and other similar ventures run a considerable risk financial as well as operation risk margin for everyone involved even though they are very lucrative markets. The implementation of a shared liquidity pool to increase the amount of risk bearing capacity of the book maker can be implemented to allow for more lucrative stakes and more dispersed and less extreme loses. Moreover the earning can proportionally be divided into the investors of the liquidity pool making the whole platform a much more democratised and transparent venture.
 
 # 🤝 Contributors
 <a href="https://github.com/UtkarshRastogi0712/EvenOdds/contributors">
