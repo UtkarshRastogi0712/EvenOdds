@@ -80,5 +80,5 @@ $$(1.515-1.696)+(227.27-1.9592)= 0.1327$$
 
 # 🤝 Contributors
 <a href="https://github.com/UtkarshRastogi0712/EvenOdds/contributors">
-https://contrib.rocks/image?repo=UtkarshRastogi0712/EvenOdds" />
+<img src="https://contrib.rocks/image?repo=UtkarshRastogi0712/EvenOdds" />
 </a>
