@@ -3,7 +3,8 @@ const {
   getUser,
   getUsers,
   deleteUser,
-  createUserBet
+  createUserBet,
+  getUserBets
 } = require("./user.services");
 
 const createUserController = async (req, res) => {
@@ -59,8 +60,18 @@ const deleteUserController = async (req, res) => {
 
 const createUserBetController = async (req, res) => {
   try {
-    const bet = createUserBet(req.params.id, req.body);
+    const bet = await createUserBet(req.params.id, req.body);
     res.status(201).json(bet);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+}
+
+const getUserBetsController = async (req, res) => {
+  try{
+    const bets = await getUserBets(req.params.id);
+    res.status(200).json({ success: true, data: bets });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message });
@@ -73,4 +84,5 @@ module.exports = {
   getUsersController,
   deleteUserController,
   createUserBetController,
+  getUserBetsController,
 };

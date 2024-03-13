@@ -48,7 +48,9 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
-  bets: [userBetSchema]
+  bets: {
+    type: [userBetSchema],
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);

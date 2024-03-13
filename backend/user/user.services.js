@@ -46,7 +46,6 @@ const deleteUser = async (id) => {
 
 const createUserBet = async (id, request) => {
     try {
-    const newBet = {}  
     const user = await User.findOne({ _id: id });
     const bet = await Bet.findOne({_id: request.id});
     if(!user || !bet){
@@ -54,25 +53,27 @@ const createUserBet = async (id, request) => {
     }
     const time = Date.now();
     const date = new Date(time);
-    console.log(date, bet.startTime, bet.finishTime);
     if(date < bet.startTime || date > bet.finishTime){
       throw new Error("Invalid request");
     }
-    newBet["id"] = request.id;
-    newBet["amount"] = request.amount;
-    newBet["option"] = request.option;
+    let odds = 0;
     if(request.option == 1){
-      newBet["odds"] = bet.oddsOne;
+      odds = bet.oddsOne;
     } else if(request.option == 2){
-      newBet["odds"] = bet.oddsTwo;    
+      odds = bet.oddsTwo;    
     } else {
       throw new Error("Invalid request");
+    }
+    const newBet = {
+      "id" : request.id,
+      "amount" : request.amount,
+      "option" : request.option,
+      "odds" : odds
     }
     const newAmount = bet.value + request.amount;
     bet.value = newAmount;
     const savedBet = await bet.save();
-    user.bets.push(newBet);
-    const savedUser = await user.save();
+    const savedUser = await User.updateOne({_id: id}, {$push: {bets: newBet}});
     return savedUser;
   } catch (err) {
     console.error(err);
@@ -80,4 +81,15 @@ const createUserBet = async (id, request) => {
   }
 }
 
-module.exports = { createUser, getUser, getUsers, deleteUser, createUserBet };
+const getUserBets = async (id) => {
+    try {
+        const user = await User.findOne({_id: id});
+        return user.bets;
+    } catch (err) {
+        console.error(err);
+        throw new Error(err);
+    }
+}
+
+
+module.exports = { createUser, getUser, getUsers, deleteUser, createUserBet, getUserBets };
