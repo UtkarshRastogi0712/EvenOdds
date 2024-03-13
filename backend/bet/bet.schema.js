@@ -38,6 +38,11 @@ const betSchema = new Schema({
   limit: {
     type: Number,
     default: 100
+  },
+  result: {
+    type: Number,
+    default: 0,
+    enum: [0,1,2]
   }
 });
 

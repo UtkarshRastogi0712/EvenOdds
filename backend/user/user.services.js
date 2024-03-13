@@ -84,6 +84,22 @@ const createUserBet = async (id, request) => {
 const getUserBets = async (id) => {
     try {
         const user = await User.findOne({_id: id});
+        user.bets.forEach(async (bet) => {
+          const currentBet = await Bet.findOne({_id: bet.id});
+          const time = Date.now();
+          const date = new Date(time);
+          if(currentBet.finishTime < date && bet.status!=="completed"){
+            const result = currentBet.result;
+            const statusUpdate = await User.updateOne({_id: id, "bets.id":bet.id}, {$set: {"bets.$.status": "completed"}}); 
+            console.log(statusUpdate);
+            if(result==bet.option){
+              const credits = user.credits;
+              const newCredits = credits+(bet.amount*bet.odds);
+              const amountUpdate = await User.updateOne({_id:id, "bets.id": bet.id}, {$set: {credits : newCredits}});
+              console.log(amountUpdate)
+            }
+          }
+        });
         return user.bets;
     } catch (err) {
         console.error(err);
