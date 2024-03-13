@@ -13,44 +13,36 @@ const SignUpModal = ({ showModal2, setShowModal2 }) => {
               <RxCross2
                 className="w-4 h-4"
                 onClick={() => {
-                  setShowModal2(false);
+                  setShowModal2(!showModal2);
                 }}
               />
             </div>
 
             <div className="mt-6">
-              <div className="flex flex-col ">
-                <label
-                  class="w-0"
-                  for="username"
-                >
-                  Username
-                </label>
-                <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="username"
-                  type="text"
-                  placeholder="Username"
-                />
-              </div>
+              <div className="flex flex-col gap-y-1">
+               
+                  <label class="w-0 text-lg" for="username">
+                    Username
+                  </label>
+               
              
-              <div className="flex flex-col">
-              <label
-                  class="w-0"
-                  for="password"
-                >
-                  Password
-                </label>
-                <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="password"
-                  type="text"
-                  placeholder="*******"
-                />
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="username"
+                    type="text"
+                    placeholder="Username"
+                  />
+                
               </div>
 
+              
+              <div className="flex flex-col">
+              <button className="mt-4 bg-slate-400 w-full py-2 rounded-lg">Connect Wallet</button>
+              <button className="mt-4 bg-slate-400 w-full py-2 rounded-lg">Submit</button>
 
-              <button>Connect Wallet</button>
+              </div>
+
+              
             </div>
           </div>
         </form>
